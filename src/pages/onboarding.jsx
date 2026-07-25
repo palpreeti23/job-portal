@@ -6,10 +6,9 @@ import { BarLoader } from "react-spinners";
 
 function Onboarding() {
   const { user, isLoaded } = useUser();
-  // console.log(user);
   const navigate = useNavigate();
 
-  const handleRoleSelection = async () => {
+  const handleRoleSelection = async (role) => {
     await user
       .update({
         unsafeMetadata: { role },
@@ -23,6 +22,8 @@ function Onboarding() {
   };
 
   useEffect(() => {
+    if (!isLoaded || !user) return;
+
     if (user.unsafeMetadata.role) {
       navigate(
         user.unsafeMetadata.role === "recruiter" ? "/post-job" : "/jobs",
@@ -34,9 +35,10 @@ function Onboarding() {
   }
   return (
     <div className="flex flex-col items-center justify-center mt-32">
-      <h2 className="gradient-title font-extrabold text-7xl sm:text-8xl tracking-tighter">
+      <h2 className="gradient-title font-extrabold text-7xl sm:text-8xl tracking-tighter text-white">
         I am a...
       </h2>
+
       <div className="mt-16 grid grid-cols-2 gap-4 w-full md:px-40">
         <Button
           variant="blue"
@@ -54,6 +56,7 @@ function Onboarding() {
         </Button>
       </div>
     </div>
+    // <div className="text-white text-5xl">Hello</div>
   );
 }
 

@@ -2,7 +2,7 @@ import { useUser } from "@clerk/react";
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 
-function ProtectedRoute() {
+function ProtectedRoute({ children }) {
   const { isSignedIn, user, isLoaded } = useUser();
   const { pathname } = useLocation();
 
@@ -16,7 +16,7 @@ function ProtectedRoute() {
     pathname !== "/onboarding"
   )
     return <Navigate to={"/onboarding"} />;
-  return <div></div>;
+  return children;
 }
 
 export default ProtectedRoute;

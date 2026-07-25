@@ -3,7 +3,6 @@ import "./App.css";
 import AppLayout from "./layout/app-layout";
 import LandingPage from "./pages/landing";
 import Onboarding from "./pages/onboarding";
-import JobPage from "./pages/job";
 import JobListing from "./pages/job-listing";
 import JobPage from "./pages/job";
 import PostJob from "./pages/post-job";
