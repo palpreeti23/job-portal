@@ -122,7 +122,10 @@ function ApplyJobDrawer({ job, user, applied = false, fetchJob }) {
             name="education"
             control={control}
             render={({ field }) => (
-              <RadioGroup onValueChange={field.onChange} {...field}>
+              <RadioGroup
+                value={field.value || ""}
+                onValueChange={field.onChange}
+              >
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="Intermediate" id="intermediate" />
                   <Label htmlFor="intermediate">Intermediate</Label>
@@ -164,8 +167,8 @@ function ApplyJobDrawer({ job, user, applied = false, fetchJob }) {
           </Button>
         </form>
         <DrawerFooter>
-          <DrawerClose asChild render={<Button variant="outline" />}>
-            Cancel
+          <DrawerClose asChild>
+            <Button variant="outline">Cancel</Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>

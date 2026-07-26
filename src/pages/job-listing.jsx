@@ -15,6 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { State } from "country-state-city";
+import JobCard from "@/components/job-card";
 
 function JobListing() {
   const [searchQuery, setSearchQuery] = useState("");

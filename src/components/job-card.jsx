@@ -12,6 +12,7 @@ import { Button } from "./ui/button";
 import { deleteJob, saveJob } from "@/api/apiJobs";
 import useFetch from "@/hooks/use-fetch";
 import { BarLoader } from "react-spinners";
+import { Link } from "react-router-dom";
 
 function JobCard({
   job,
@@ -19,6 +20,8 @@ function JobCard({
   savedInit = false,
   onJobSaved = () => {},
 }) {
+  const { user } = useUser();
+  const [saved, setSaved] = useState(savedInit);
   const {
     fn: fnSavedJobs,
     data: savedJob,
@@ -26,9 +29,6 @@ function JobCard({
   } = useFetch(saveJob, {
     alreadySaved: saved,
   });
-
-  const { user } = useUser();
-  const [saved, setSaved] = useState(savedInit);
 
   const handleSaveJob = async () => {
     await fnSavedJobs({
@@ -77,7 +77,7 @@ function JobCard({
           </div>
         </div>
         <hr />
-        {job.description.substing(0, job.description.indexOf("."))}
+        {job.description.substring(0, job.description.indexOf("."))}
       </CardContent>
       <CardFooter className={"flex gap-2"}>
         <Link to={`/job/${job.id}`} className="flex-1">

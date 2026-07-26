@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/select";
 import ApplyJobDrawer from "../components/apply-job";
 import ApplicationCard from "@/components/application-card";
+import { useUser } from "@clerk/react";
+import MDEditor from "@uiw/react-md-editor";
 
 function JobPage() {
   const { isLoaded, user } = useUser();
@@ -42,7 +44,7 @@ function JobPage() {
     if (isLoaded) fnJob();
   }, [isLoaded]);
 
-  if (isLoaded || loadingJob) {
+  if (!isLoaded || loadingJob) {
     return <BarLoader className="mb-4" width={"100%"} color="#36d7b7" />;
   }
 
