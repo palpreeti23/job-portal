@@ -3,6 +3,7 @@ import { useUser } from "@clerk/react";
 import React, { useEffect } from "react";
 import { BarLoader } from "react-spinners";
 import JobCard from "./job-card";
+import useFetch from "@/hooks/use-fetch";
 
 function CreatedJobs() {
   const { user } = useUser();

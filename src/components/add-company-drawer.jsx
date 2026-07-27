@@ -58,7 +58,7 @@ function AddCompanyDrawer({ fetchCompanies }) {
 
   return (
     <Drawer>
-      <DrawerTrigger>
+      <DrawerTrigger asChild>
         <Button variant="secondary" type="button" size="sm">
           Add Company
         </Button>
@@ -92,11 +92,10 @@ function AddCompanyDrawer({ fetchCompanies }) {
         {loadingAddCompany && <BarLoader width={"100%"} color="#36d7b7" />}
 
         <DrawerFooter>
-          <DrawerClose
-            asChild
-            render={<Button variant="secondary" type="button" />}
-          >
-            Cancel
+          <DrawerClose asChild>
+            <Button variant="secondary" type="button">
+              Cancel
+            </Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>

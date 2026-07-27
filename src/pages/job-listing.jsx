@@ -45,7 +45,7 @@ function JobListing() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    let formData = new formData(e.target);
+    let formData = new FormData(e.target);
 
     const query = formData.get("search-query");
     if (query) setSearchQuery(query);
