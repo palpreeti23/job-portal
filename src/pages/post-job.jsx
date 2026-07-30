@@ -183,7 +183,6 @@ function PostJob() {
           render={({ field }) => (
             <MDEditor
               value={field.value || ""}
-              // onValueChange={field.onChange(value || "")}
               onChange={(value) => field.onChange(value || "")}
             />
           )}

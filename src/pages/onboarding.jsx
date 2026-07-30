@@ -56,7 +56,6 @@ function Onboarding() {
         </Button>
       </div>
     </div>
-    // <div className="text-white text-5xl">Hello</div>
   );
 }
 

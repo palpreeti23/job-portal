@@ -9,7 +9,6 @@ import {
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
@@ -17,6 +16,7 @@ import {
 import { Boxes, BriefcaseBusiness, Download, School } from "lucide-react";
 import useFetch from "@/hooks/use-fetch";
 import { updateApplicationStatus } from "@/api/apiApplications";
+import { BarLoader } from "react-spinners";
 
 function ApplicationCard({ application, isCandidate = false }) {
   const handleDownload = () => {
@@ -29,7 +29,7 @@ function ApplicationCard({ application, isCandidate = false }) {
   const { loading: loadingHiringStatus, fn: fnHiringStatus } = useFetch(
     updateApplicationStatus,
     {
-      job_id: application.job_id,
+      application_id: application.id,
     },
   );
 
@@ -74,7 +74,7 @@ function ApplicationCard({ application, isCandidate = false }) {
         <hr />
       </CardContent>
       <CardFooter className={"flex justify-between"}>
-        <span>{new date(application?.created_at).toLocaleString()}</span>
+        <span>{new Date(application?.created_at).toLocaleString()}</span>
         {isCandidate ? (
           <span className="capitalize font-bold">
             Status: {application?.status}
