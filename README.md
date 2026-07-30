@@ -1,16 +1,100 @@
-# React + Vite
+# Job Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack job portal web application built with React, Clerk, and Supabase. The platform provides separate experiences for candidates and recruiters, allowing users to search and apply for jobs or create and manage job postings.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Candidate
+- Sign up and log in using Clerk authentication
+- Candidate onboarding and role selection
+- Browse available jobs
+- Search jobs by title
+- Filter jobs by location and company
+- View detailed job information
+- Save and unsave jobs
+- Apply for jobs with:
+  - Years of experience
+  - Skills
+  - Education
+  - Resume upload
+- View submitted applications
+- Track application status
 
-## React Compiler
+### Recruiter
+- Recruiter authentication and onboarding
+- Create new job postings
+- Add and manage companies
+- View jobs posted by the recruiter
+- Delete job postings
+- Change hiring status between Open and Closed
+- View candidate applications
+- Download candidate resumes
+- Update application status:
+  - Applied
+  - Interviewing
+  - Hired
+  - Rejected
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+### Frontend
+- React
+- Vite
+- React Router
+- Tailwind CSS
+- shadcn/ui
+- Lucide React
+- React Hook Form
+- Zod
+- React Spinners
+- `@uiw/react-md-editor`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Authentication
+- Clerk
+
+### Backend / Database
+- Supabase
+- PostgreSQL
+- Supabase Storage
+
+### Deployment
+- Netlify
+
+## Project Structure
+
+```text
+src/
+├── api/
+│   ├── apiApplications.js
+│   ├── apiCompanies.js
+│   └── apiJobs.js
+│
+├── components/
+│   ├── ui/
+│   ├── application-card.jsx
+│   ├── apply-job.jsx
+│   ├── created-applications.jsx
+│   ├── created-jobs.jsx
+│   ├── job-card.jsx
+│   └── ...
+│
+├── hooks/
+│   └── use-fetch.jsx
+│
+├── layout/
+│   └── app-layout.jsx
+│
+├── pages/
+│   ├── landing.jsx
+│   ├── onboarding.jsx
+│   ├── job-listing.jsx
+│   ├── job.jsx
+│   ├── post-job.jsx
+│   ├── saved-job.jsx
+│   └── my-jobs.jsx
+│
+├── utils/
+│   └── supabase.js
+│
+├── App.jsx
+└── main.jsx
