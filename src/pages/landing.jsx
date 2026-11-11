@@ -16,12 +16,16 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useUser } from "@clerk/react";
 
 function LandingPage() {
+  const { isSignedIn, user } = useUser();
+  const role = user?.unsafeMetadata?.role;
+
   return (
     <main className="flex flex-col gap-10 sm:gap-12 py-10 sm:py-20">
       <section className="text-center">
-        <h1 className="flex flex-col items-center justify-center gradient gradient-title text-4xl font-extrabold sm:text-6xl lg:text-8xl tracking-tighter py-4">
+        <h1 className="flex flex-col items-center justify-center gradient gradient-title text-4xl font-extrabold sm:text-6xl lg:text-8xl tracking-tighter py-4  sm:py-0">
           Find Your Dream Job{" "}
           <span className="flex items-center gap-2 sm:gap-6">
             and get{" "}
@@ -37,7 +41,7 @@ function LandingPage() {
         </p>
       </section>
       <div className="flex gap-6 justify-center">
-        {/* buttons */}
+        {/* buttons
         <Link to="/jobs">
           <Button variant="blue" size="xl">
             Find Jobs
@@ -47,7 +51,25 @@ function LandingPage() {
           <Button variant="destructive" size="xl">
             Post a Job
           </Button>
-        </Link>
+        </Link> */}
+
+        {/* Find Jobs */}
+        {(!isSignedIn || !role || role === "candidate") && (
+          <Link to="/jobs">
+            <Button variant="blue" size="xl">
+              Find Jobs
+            </Button>
+          </Link>
+        )}
+
+        {/* Post a Job */}
+        {(!isSignedIn || !role || role === "recruiter") && (
+          <Link to="/post-job">
+            <Button variant="destructive" size="xl">
+              Post a Job
+            </Button>
+          </Link>
+        )}
       </div>
       {/* carousel */}
       <Carousel className="w-full py-10 " plugins={[Autoplay({ delay: 2000 })]}>

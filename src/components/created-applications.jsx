@@ -25,6 +25,9 @@ function CreatedApplications() {
     return <BarLoader className="mb-4" width={"100%"} color="#36d7b7" />;
   }
 
+  if (!applications || applications.length === 0) {
+    return <p>No Applications yet!</p>;
+  }
   return (
     <div className="flex flex-col gap-2">
       {applications?.map((application) => {

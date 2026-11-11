@@ -1,14 +1,14 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Button } from "./ui/button";
 import { UserButton, Show, useUser } from "@clerk/react";
-import { BriefcaseBusinessIcon, Heart, PenBox } from "lucide-react";
+import { BriefcaseBusinessIcon, Heart, PenBox, X } from "lucide-react";
 import { SignIn } from "@clerk/react";
 
 function Header() {
   const [showSignIn, setShowSignIn] = useState(false);
   const [search, setSearch] = useSearchParams();
-  const { user } = useUser();
+  // const { user } = useUser();
 
   useEffect(() => {
     if (search.get("sign-in")) {
@@ -21,6 +21,19 @@ function Header() {
       setSearch({});
     }
   };
+
+  useEffect(() => {
+    if (!showSignIn) return;
+
+    const previousOverflow = document.body.style.overflow;
+
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [showSignIn]);
+
   return (
     <>
       <nav className="py-4 flex justify-between items-center">
@@ -36,19 +49,27 @@ function Header() {
           </Show>
 
           <Show when="signed-in">
-            {user?.unsafeMetadata?.role === "recruiter" && (
+            {/* {user?.unsafeMetadata?.role === "recruiter" && (
               <Link to={`/post-job`}>
                 <Button variant="destructive" className={"rounded-full"}>
                   <PenBox size={20} className="mr-2" />
                   Post a Job
                 </Button>
               </Link>
-            )}
+            )} */}
 
             <UserButton
               appearance={{
                 elements: {
                   avatarBox: "w-10 h-10",
+                  // modalBackdrop: "bg-black",
+                },
+              }}
+              userProfileProps={{
+                appearance: {
+                  elements: {
+                    modalBackdrop: "bg-black",
+                  },
                 },
               }}
             >
@@ -73,6 +94,15 @@ function Header() {
           className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
           onClick={handleOverlayClick}
         >
+          <button
+            onClick={() => {
+              setShowSignIn(false);
+              setSearch({});
+            }}
+            className="absolute right-6 top-6 text-white"
+          >
+            <X size={28} />
+          </button>
           <SignIn
             signUpFallbackRedirectUrl={`/onboarding`}
             fallbackRedirectUrl={`/onboarding`}
