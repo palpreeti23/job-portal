@@ -45,10 +45,7 @@ function JobListing() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    let formData = new FormData(e.target);
-
-    const query = formData.get("search-query");
-    if (query) setSearchQuery(query);
+    fnJobs();
   };
 
   const clearFilters = () => {
@@ -75,6 +72,8 @@ function JobListing() {
           type="text"
           placeholder="Search Jobs by Title"
           name="search-query"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
           className={"h-full flex-1 px-4 text-md"}
         />
         <Button type="submit" className="h-full sm:w-28" variant="blue">
