@@ -141,3 +141,30 @@
   padding-left: 25px;
   color: white;
 }
+
+/* Full-screen account modal */
+.cl-modalContent {
+  height: 90vh !important;
+  max-height: 90vh !important;
+}
+
+.cl-userProfile-root,
+.cl-userProfile-root .cl-cardBox {
+  height: 90% !important;
+  max-height: 90vh !important;
+}
+
+/* Keep navigation and content side by side */
+.cl-userProfile-root .cl-cardBox {
+  flex-direction: row !important;
+}
+
+/* Keep content within the available height */
+.cl-userProfile-root .cl-scrollBox {
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+.cl-userProfile-root .cl-pageScrollBox {
+  overflow: hidden !important;
+}

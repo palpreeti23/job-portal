@@ -49,26 +49,24 @@ function Header() {
           </Show>
 
           <Show when="signed-in">
-            {/* {user?.unsafeMetadata?.role === "recruiter" && (
-              <Link to={`/post-job`}>
-                <Button variant="destructive" className={"rounded-full"}>
-                  <PenBox size={20} className="mr-2" />
-                  Post a Job
-                </Button>
-              </Link>
-            )} */}
-
             <UserButton
               appearance={{
                 elements: {
                   avatarBox: "w-10 h-10",
-                  // modalBackdrop: "bg-black",
+                  modalBackdrop: "!bg-black",
+                  userProfileRootBox: "z-[9999]",
+                  userProfileModal: "!bg-black",
                 },
               }}
               userProfileProps={{
                 appearance: {
                   elements: {
-                    modalBackdrop: "bg-black",
+                    modalBackdrop: "!bg-black",
+                    rootBox: "w-full",
+                    card: "!max-h-[90vh] !overflow-hidden",
+                    pageScrollBox: "!overflow-hidden !p-2",
+                    navbar: "!py-1",
+                    profileSection: "!py-1",
                   },
                 },
               }}
