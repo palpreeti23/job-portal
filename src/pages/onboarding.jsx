@@ -14,7 +14,9 @@ function Onboarding() {
         unsafeMetadata: { role },
       })
       .then(() => {
-        navigate(role === "recruiter" ? "/post-job" : "/jobs");
+        navigate(role === "recruiter" ? "/post-job" : "/jobs", {
+          replace: true,
+        });
       })
       .catch((err) => {
         console.log("Error updating role", err);
@@ -29,7 +31,7 @@ function Onboarding() {
         user.unsafeMetadata.role === "recruiter" ? "/post-job" : "/jobs",
       );
     }
-  }, [user]);
+  }, [user, isLoaded, navigate]);
   if (!isLoaded) {
     return <BarLoader className="mb-4" width={"100%"} color="#36d7b7" />;
   }

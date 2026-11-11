@@ -72,7 +72,10 @@ function LandingPage() {
         )}
       </div>
       {/* carousel */}
-      <Carousel className="w-full py-10 " plugins={[Autoplay({ delay: 2000 })]}>
+      <Carousel
+        className=" w-full py-10 "
+        plugins={[Autoplay({ delay: 2000 })]}
+      >
         <CarouselContent className={`flex gap-5 sm:gap-20 items-center`}>
           {companies.map(({ name, id, path }) => {
             return (

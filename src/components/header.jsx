@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { UserButton, Show, useUser } from "@clerk/react";
 import { BriefcaseBusinessIcon, Heart, PenBox, X } from "lucide-react";
 import { SignIn } from "@clerk/react";
+import { createPortal } from "react-dom";
 
 function Header() {
   const [showSignIn, setShowSignIn] = useState(false);
@@ -62,8 +63,8 @@ function Header() {
                 appearance: {
                   elements: {
                     modalBackdrop: "!bg-black",
-                    rootBox: "w-full",
-                    card: "!max-h-[90vh] !overflow-hidden",
+                    rootBox: "w-full py-10",
+                    card: "!max-h-[90vh] !overflow-hidden ",
                     pageScrollBox: "!overflow-hidden !p-2",
                     navbar: "!py-1",
                     profileSection: "!py-1",
@@ -87,26 +88,30 @@ function Header() {
           </Show>
         </div>
       </nav>
-      {showSignIn && (
-        <div
-          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
-          onClick={handleOverlayClick}
-        >
-          <button
-            onClick={() => {
-              setShowSignIn(false);
-              setSearch({});
-            }}
-            className="absolute right-6 top-6 text-white"
+
+      {showSignIn &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[99999] flex items-center justify-center bg-black"
+            onClick={handleOverlayClick}
           >
-            <X size={28} />
-          </button>
-          <SignIn
-            signUpFallbackRedirectUrl={`/onboarding`}
-            fallbackRedirectUrl={`/onboarding`}
-          />
-        </div>
-      )}
+            <button
+              onClick={() => {
+                setShowSignIn(false);
+                setSearch({});
+              }}
+              className="absolute right-6 top-6 z-[100000] text-white"
+            >
+              <X size={28} />
+            </button>
+
+            <SignIn
+              signUpFallbackRedirectUrl="/onboarding"
+              fallbackRedirectUrl="/onboarding"
+            />
+          </div>,
+          document.body,
+        )}
     </>
   );
 }
